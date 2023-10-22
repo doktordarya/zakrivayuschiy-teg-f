@@ -6,46 +6,52 @@
 */
 
 /* LIGHT */
-  :root.theme-light {
-    --card-text-font-weight: 400;
-    --card-title-font-weight: 700;
-    --bg-color: #FFF;
-    --accent-color: #000;
-    --repeating-linear-gradient: #d3d3d3;
-    --linear-gradient-top: #e7e7e7;
-    --linear-gradient-bottom: #1a1a1a;
-    --button-text-color: #FFF;
-  } 
-  
+:root.theme-light {
+  --card-text-font-weight: 400;
+  --card-title-font-weight: 700;
+  --bg-color: #fff;
+  --accent-color: #000;
+  --repeating-linear-gradient: #d3d3d3;
+  --linear-gradient-top: #e7e7e7;
+  --linear-gradient-bottom: #1a1a1a;
+  --button-text-color: #fff;
+}
+
 /* DARK */
-  :root.theme-dark {
+:root.theme-dark {
+  --card-text-font-weight: 465;
+  --card-title-font-weight: 785;
+  --bg-color: #000;
+  --accent-color: #00cc14;
+  --repeating-linear-gradient: #000;
+  --linear-gradient-top: #007f0c;
+  --linear-gradient-bottom: #004306;
+  --button-text-color: #00cc14;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
     --card-text-font-weight: 465;
     --card-title-font-weight: 785;
     --bg-color: #000;
-    --accent-color: #00CC14;
+    --accent-color: #00cc14;
     --repeating-linear-gradient: #000;
     --linear-gradient-top: #007f0c;
     --linear-gradient-bottom: #004306;
-    --button-text-color: #00CC14;
+    --button-text-color: #00cc14;
   }
-  
-  @media (prefers-color-scheme: dark) {
-    :root {
-        --card-text-font-weight: 465;
-        --card-title-font-weight: 785;
-        --bg-color: #000;
-        --accent-color: #00CC14;
-        --repeating-linear-gradient: #000;
-        --linear-gradient-top: #007f0c;
-        --linear-gradient-bottom: #004306;
-        --button-text-color: #00CC14;
-    }
 
-    .page {
-        background-image: repeating-linear-gradient(to right, var(--repeating-linear-gradient) 0 2px, transparent 2px 4px), 
-                          repeating-linear-gradient(to bottom, var(--repeating-linear-gradient) 0 2px, transparent 2px 4px), 
-                          linear-gradient(var(--linear-gradient-top), var(--linear-gradient-bottom));
-      }   
+  .page {
+    background-image: repeating-linear-gradient(
+        to right,
+        var(--repeating-linear-gradient) 0 2px,
+        transparent 2px 4px
+      ),
+      repeating-linear-gradient(
+        to bottom,
+        var(--repeating-linear-gradient) 0 2px,
+        transparent 2px 4px
+      ),
+      linear-gradient(var(--linear-gradient-top), var(--linear-gradient-bottom));
   }
-  
-  
+}
