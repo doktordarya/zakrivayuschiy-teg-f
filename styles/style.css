@@ -47,7 +47,7 @@ header {
   display: grid;
   gap: 20px;
   justify-items: center;
-  font-family: var(--accent-font, "PressStart2P-Regular", sans-serif);
+  font-family: var(--accent-font, "PressStart2P-Regular", fantasy);
   text-transform: uppercase;
   background-color: var(--bg-color, #fff);
   border: 2px solid var(--accent-color, #000);
@@ -57,6 +57,7 @@ header {
 .header__logo {
   margin-block-start: clamp(7.5rem, 7.1479rem + 1.5023vw, 8.5rem);
   font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
+  text-decoration: none;
 }
 
 .header__title {
@@ -67,7 +68,7 @@ header {
 .theme-menu__list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 1em;
   font-size: 14px;
   margin-block-start: 5px;
   margin-block-end: 25px;
@@ -97,6 +98,9 @@ header {
 .theme-menu__button:disabled,
 .theme-menu__button:hover {
   opacity: 0.6;
+}
+
+.theme-menu__button {
   transition: opacity 0.3s ease;
 }
 
@@ -108,7 +112,6 @@ header {
 .theme-menu__button:focus-visible {
   outline: none;
   opacity: 0.6;
-  transition: opacity 0.3s ease;
 }
 
 .theme-menu__button::after {
@@ -163,35 +166,31 @@ header {
   outline: 2px solid var(--accent-color, #000);
 }
 
-.parachute {
-  filter: saturate(120%) hue-rotate(40deg);
-}
-
-.yes-you-can {
-  filter: contrast(110%) invert(90%) hue-rotate(100deg);
-}
-
-.teg {
-  filter: hue-rotate(175deg) invert(70) contrast(110%);
-}
-
-.pointer-perfect {
-  filter: contrast(2) invert(2%) brightness(150%) hue-rotate(160deg);
-}
-
-.family-support {
-  filter: hue-rotate(120deg) invert(90%) saturate(150%);
-}
-
-.glasses {
-  filter: contrast(120%) hue-rotate(110deg);
-}
-
-.eat-sleep-code {
+.card__image_type_saturate {
   filter: saturate(120%);
 }
 
-.path-of-samurai {
+.card__image_type_contrast {
+  filter: contrast(110%) invert(90%) hue-rotate(100deg);
+}
+
+.card__image_type_hue-rotate {
+  filter: hue-rotate(175deg) invert(70) contrast(110%);
+}
+
+.card__image_type_brightness {
+  filter: contrast(2) invert(2%) brightness(150%) hue-rotate(160deg);
+}
+
+.card__image_type_invert {
+  filter: hue-rotate(120deg) invert(90%) saturate(150%);
+}
+
+.card__image_type_contrast-hue-rotate {
+  filter: contrast(120%) hue-rotate(110deg);
+}
+
+.card__image_type_saturate-brightness {
   filter: contrast(1) saturate(120%) brightness(110%);
 }
 
@@ -203,7 +202,7 @@ header {
   position: absolute;
   inset-block-start: 25px;
   inset-inline-end: 25px;
-  font-family: var(--accent-font, "PressStart2P-Regular", sans-serif);
+  font-family: var(--accent-font, "PressStart2P-Regular", fantasy);
   font-size: 14px;
   mix-blend-mode: hard-light;
   opacity: 0.5;
@@ -234,24 +233,27 @@ header {
   background-color: transparent;
   border: 2px solid var(--accent-color, #000);
   inline-size: 130px;
-  block-size: 38px;
+  min-block-size: 38px;
   padding: 7px 15px;
-  font-family: var(--accent-font, "PressStart2P-Regular", sans-serif);
+  font-family: var(--accent-font, "PressStart2P-Regular", fantasy);
   font-size: 14px;
 }
 
 .card__icon-button {
   background-color: transparent;
   border: none;
-  padding: 5px 0 0;
-  block-size: 38px;
+  padding: 0;
+  min-block-size: 38px;
 }
 
-/* СОСТОЯНИЯ КНОПОК КАРТОЧЕК И ФУТЕРА */
+.like-icon {
+  display: flex;
+  align-items: center;
+}
 
-.card__like-button:focus,
-.footer__button:focus,
-.dialog__button:focus {
+/* СОСТОЯНИЯ КНОПОК КАРТОЧЕК, МЭЙНА  И ДИАЛОГА */
+
+.button-state:focus {
   outline: none;
   box-shadow: 2px 2px 0 var(--accent-color, #000);
   transition: box-shadow 0.3s ease;
@@ -267,67 +269,59 @@ header {
   transition: outline 0.3s ease;
 }
 
-.card__like-button::after,
-.footer__button::after,
-.dialog__button::after {
+.button-state::after {
   content: "";
   position: absolute;
   display: block;
-  inset: 0;
+  inline-size: calc(100% + 2px);
+  block-size: calc(100% + 2px);
+  inset: -1px 0 0 -1px;
   background-color: var(--accent-color, #000);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.5s ease-in-out;
 }
 
-.card__like-button:hover::after,
-.footer__button:hover::after,
-.dialog__button:hover::after {
+.button-state:hover::after {
   transform: scaleX(1);
 }
 
-.card__like-button:hover .button__text,
-.footer__button:hover .button__text,
-.dialog__button:hover .button__text {
+.button__text {
   position: relative;
   z-index: 1;
-  mix-blend-mode: difference;
   color: var(--button-text-color, #fff);
+  mix-blend-mode: difference;
+  transition: mix-blend-mode 0.5s ease-in-out;
 }
 
-.card__like-button:hover,
+.button-state:hover,
 .card__icon-button:hover,
-.theme-menu__button:hover,
-.footer__button:hover,
-.dialog__button:hover {
+.theme-menu__button:hover {
   cursor: pointer;
 }
 
 /* ---- */
 
-.footer {
-  margin: 50px auto 100px auto;
-}
-
-.footer__button {
+.save__button {
   position: relative;
+  margin: 50px auto 100px;
   background-color: var(--bg-color, #fff);
   border: 2px solid var(--accent-color, #000);
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 15px 20px;
-  font-family: var(--accent-font, "PressStart2P-Regular", sans-serif);
+  font-family: var(--accent-font, "PressStart2P-Regular", fantasy);
   font-size: 14px;
 }
 
-.floppy-footer {
+.floppy-save-button {
   fill: var(--accent-color, #000);
   inline-size: 21px;
   block-size: 21px;
 }
 
-.footer__button:hover .floppy-footer {
+.save__button:hover .floppy-save-button {
   position: relative;
   z-index: 1;
   fill: var(--button-text-color, #fff);
@@ -345,11 +339,11 @@ header {
     inline-size: 100vw;
   }
 
-  .footer__button {
+  .save__button {
     flex-direction: column;
   }
 
-  .floppy-footer {
+  .floppy-save-button {
     inline-size: 28px;
     block-size: 28px;
   }
@@ -373,7 +367,7 @@ dialog {
   border: 2px solid var(--accent-color, #000);
   background-color: var(--bg-color, #fff);
   color: inherit;
-  font-family: var(--accent-font, "PressStart2P-Regular", sans-serif);
+  font-family: var(--accent-font, "PressStart2P-Regular", fantasy);
   text-transform: uppercase;
 }
 
@@ -407,6 +401,7 @@ dialog::backdrop {
 
 .dialog__button {
   position: relative;
+  inline-size: 100%;
   padding: 9px 17px;
   background-color: transparent;
   border: 2px solid var(--accent-color, #000);
