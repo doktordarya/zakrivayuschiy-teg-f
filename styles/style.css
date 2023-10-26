@@ -82,6 +82,7 @@ header {
   border: none;
   text-transform: uppercase;
   padding: 0;
+  transition: opacity 0.3s ease;
 }
 
 .theme-menu__button:disabled::before {
@@ -98,10 +99,6 @@ header {
 .theme-menu__button:disabled,
 .theme-menu__button:hover {
   opacity: 0.6;
-}
-
-.theme-menu__button {
-  transition: opacity 0.3s ease;
 }
 
 .theme-menu__button:disabled {
