@@ -60,6 +60,10 @@ header {
   text-decoration: none;
 }
 
+.header__logo:focus {
+  outline: none;
+}
+
 .header__title {
   font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
   font-weight: inherit;
@@ -114,6 +118,8 @@ header {
 .theme-menu__button::after {
   content: "";
   position: absolute;
+  inset-block-start: 15px;
+  inset-inline-start: 0;
   display: block;
   border-block-end: 2px solid var(--accent-color, #000);
   opacity: 0.6;
@@ -313,16 +319,13 @@ header {
 }
 
 .floppy-save-button {
-  fill: var(--accent-color, #000);
-  inline-size: 21px;
-  block-size: 21px;
-}
-
-.save__button:hover .floppy-save-button {
   position: relative;
   z-index: 1;
   fill: var(--button-text-color, #fff);
   mix-blend-mode: difference;
+  transition: mix-blend-mode 0.5s ease-in-out;
+  inline-size: 21px;
+  block-size: 21px;
 }
 
 /* МОБИЛЬНАЯ ВЕРСИЯ */
